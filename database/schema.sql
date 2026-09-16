@@ -98,3 +98,26 @@ CREATE TABLE irrigation_history (
         REFERENCES fields(field_id)
         ON DELETE CASCADE
 );
+CREATE TABLE irrigation_schedules (
+    schedule_id SERIAL PRIMARY KEY,
+    field_id INTEGER NOT NULL,
+
+    irrigation_need VARCHAR(20) NOT NULL,
+    confidence DECIMAL(6,4),
+
+    water_depth_mm DECIMAL(8,2),
+    water_quantity_litres DECIMAL(12,2),
+
+    irrigation_required BOOLEAN NOT NULL,
+    recommended_time VARCHAR(50),
+    frequency VARCHAR(100),
+
+    overwatering_prevented BOOLEAN DEFAULT FALSE,
+    reason TEXT,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (field_id)
+        REFERENCES fields(field_id)
+        ON DELETE CASCADE
+);

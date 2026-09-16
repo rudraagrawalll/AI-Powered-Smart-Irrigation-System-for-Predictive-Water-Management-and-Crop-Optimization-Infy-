@@ -1,7 +1,7 @@
 const express = require("express");
 const { Pool } = require("pg");
 const axios = require("axios");
-require("dotenv").config();
+require("dotenv").config({ path: "./backend/.env" });
 
 const app = express();
 
