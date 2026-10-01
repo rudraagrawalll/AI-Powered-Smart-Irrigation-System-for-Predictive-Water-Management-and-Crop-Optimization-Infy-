@@ -1,0 +1,14 @@
+.page { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 2rem; background-color: #14251a; background-image: linear-gradient(135deg, rgba(7, 20, 12, .72), rgba(14, 31, 19, .55)), url("/login-farm-user.jpg"); background-position: center; background-size: cover; background-repeat: no-repeat; background-attachment: fixed; font-family: Arial, Helvetica, sans-serif; color: #1e3323; }
+
+.card { width: min(100%, 440px); padding: clamp(26px, 6vw, 44px); border: 1px solid #e0e9df; border-radius: 26px; background: rgba(255,255,255,.96); box-shadow: 0 24px 70px #193c2020; }
+.brand { display: flex; align-items: center; gap: 10px; color: #216638; font-size: 17px; font-weight: 800; }.brandIcon { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 13px; background: #e8f4e5; font-size: 21px; }
+.eyebrow { margin: 34px 0 9px; color: #4a8757; font-size: 11px; font-weight: 800; letter-spacing: 1.4px; }.card h1 { margin: 0; font-size: clamp(29px, 7vw, 36px); letter-spacing: -1.2px; }.intro { margin: 11px 0 23px; color: #66766a; line-height: 1.6; }
+.notice { display: grid; gap: 5px; margin: 0 0 23px; padding: 13px 14px; border: 1px solid #ead9a9; border-radius: 12px; background: #fff9e9; color: #655326; font-size: 12px; line-height: 1.5; }.notice strong { font-size: 13px; }
+.card form { display: grid; gap: 9px; }.card label { margin-top: 7px; color: #314737; font-size: 13px; font-weight: 700; }.card input { width: 100%; min-height: 48px; padding: 0 14px; border: 1px solid #d6e0d6; border-radius: 11px; background: #fff; color: #23352a; font-size: 15px; }.card input:focus { border-color: #34824b; outline: 3px solid #34824b27; }.card input::placeholder { color: #98a49a; }
+.error { margin: 2px 0; color: #a32e2e; font-size: 13px; }.submit { min-height: 50px; margin-top: 9px; border: 0; border-radius: 12px; background: #267440; color: white; font-size: 15px; font-weight: 800; cursor: pointer; box-shadow: 0 7px 16px #26744029; }.submit:hover { background: #1d6335; }.submit:focus-visible { outline: 3px solid #8bbf91; outline-offset: 3px; }.submit:disabled { cursor: wait; opacity: .75; }.footer { margin: 24px 0 0; color: #819086; font-size: 12px; line-height: 1.5; text-align: center; }
+
+.switch { display:block; width:100%; min-height:48px; margin-top:16px; border:1px solid #267440; border-radius:12px; background:#f3faf1; color:#267440; font-size:14px; font-weight:800; cursor:pointer; }.switch:hover { background:#e6f4e3; }.switch:focus-visible { outline:3px solid #8bbf91; outline-offset:3px; border-radius:4px; }
+
+@media (max-width: 767px) {
+  .page { background-attachment: scroll; }
+}

@@ -1,0 +1,13 @@
+{
+    "model_name": "Smart Irrigation Gradient Boosting",
+    "model_version": "1.0.0",
+    "model_type": "GradientBoostingClassifier",
+    "n_estimators": 200,
+    "learning_rate": 0.05,
+    "max_depth": 3,
+    "min_samples_split": 5,
+    "test_accuracy": 0.9953333333333333,
+    "test_macro_f1": 0.9804008049005866,
+    "high_recall": 0.9,
+    "created_at": "2026-09-16T01:41:17.274722"
+}

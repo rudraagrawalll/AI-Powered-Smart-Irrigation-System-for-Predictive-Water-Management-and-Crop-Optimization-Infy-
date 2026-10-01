@@ -1,0 +1,12 @@
+"use client";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { apiGet, type FieldAnalytics } from "@/lib/api";
+import styles from "../data-page.module.css";
+const number = (value: unknown, digits = 1) => value == null || value === "" ? "—" : Number(value).toLocaleString(undefined, { maximumFractionDigits: digits });
+export default function AnalyticsPage() {
+  const [fieldId, setFieldId] = useState("1"); const [data, setData] = useState<FieldAnalytics | null>(null); const [error, setError] = useState(""); const [loading, setLoading] = useState(false);
+  useEffect(() => { let live = true; setLoading(true); setError(""); apiGet<FieldAnalytics>(`/api/analytics/${fieldId}`).then((value) => { if (live) setData(value); }).catch((e: unknown) => { if (live) setError(e instanceof Error ? e.message : "Could not load analytics."); }).finally(() => { if (live) setLoading(false); }); return () => { live = false; }; }, [fieldId]);
+  const cards = data ? [["Sensor readings", number(data.sensor.reading_count, 0)], ["Average moisture", data.sensor.average_soil_moisture == null ? "—" : `${number(data.sensor.average_soil_moisture)}%`], ["Lowest moisture", data.sensor.minimum_soil_moisture == null ? "—" : `${number(data.sensor.minimum_soil_moisture)}%`], ["Highest moisture", data.sensor.maximum_soil_moisture == null ? "—" : `${number(data.sensor.maximum_soil_moisture)}%`], ["Irrigation schedules", number(data.irrigation.irrigation_count, 0)], ["Water scheduled", `${number(data.irrigation.total_water_litres)} L`]] : [];
+  return <main className={styles.page}><header className={styles.header}><Link href="/">← Dashboard</Link><h1>Field analytics</h1><label>Field ID <input type="number" min="1" value={fieldId} onChange={(e) => setFieldId(e.target.value)} /></label></header>{loading && <p className={styles.notice}>Loading analytics…</p>}{error && <p className={styles.error} role="alert">{error}</p>}{!loading && !error && data && <><p className={styles.subhead}>Summary for field {data.field_id}, based on records stored in the database.</p><section className={styles.metrics}>{cards.map(([label, value]) => <article className={styles.metric} key={label}><span>{label}</span><strong>{value}</strong></article>)}</section>{Number(data.sensor.reading_count) === 0 && <p className={styles.notice}>No sensor data has been recorded yet. Analytics will populate after readings arrive.</p>}</>}</main>;
+}
